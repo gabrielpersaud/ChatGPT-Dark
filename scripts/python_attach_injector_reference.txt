@@ -1,0 +1,46 @@
+Saved on 2026-03-30 before restoring the 6:09 AM CLI injector path.
+
+This reference captures the newer Python-based attach/load method that was
+temporarily used inside applyDarkMode().
+
+Core behavior:
+
+1. Select bundled Python when PrivatePython/runtime and frida_tools exist.
+2. Otherwise fall back to /usr/bin/python3.
+3. Write TMP_JS and TMP_PY under /tmp.
+4. TMP_PY runs:
+   - frida.attach(pid)
+   - session.create_script(source)
+   - script.load()
+   - time.sleep(2.0)
+   - session.detach()
+5. Shell invokes:
+   "${PYTHON_CMD[@]}" "$TMP_PY" "$PID" "$TMP_JS"
+
+Representative shell fragment:
+
+typeset -a PYTHON_CMD
+
+if [[ -n "$BUNDLED_PYTHON" && -x "$BUNDLED_PYTHON" && -d "$BUNDLED_SITE_PACKAGES/frida_tools" ]]; then
+  export PYTHONHOME="$BUNDLED_PYTHONHOME"
+  export PYTHONPATH="$BUNDLED_SITE_PACKAGES"
+  PYTHON_CMD=("$BUNDLED_PYTHON")
+else
+  USER_BASE="$("$LEGACY_PYTHON" -m site --user-base 2>/dev/null)"
+  FRIDA="$USER_BASE/bin/frida"
+
+  if [[ ! -x "$FRIDA" ]]; then
+    show_dialog_and_quit "Frida runtime is missing from this copy of ChatGPT Dark.\n\nRebuild or reinstall the app."
+  fi
+
+  PYTHON_CMD=("$LEGACY_PYTHON")
+fi
+
+Representative Python fragment:
+
+session = frida.attach(pid)
+script = session.create_script(source)
+script.on("message", on_message)
+script.load()
+time.sleep(2.0)
+session.detach()

@@ -1,0 +1,10 @@
+.DS_Store
+
+# Xcode user-specific state
+*.xcuserstate
+xcuserdata/
+*.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
+
+# Local Xcode cache artifacts
+com.apple.DeveloperTools/
