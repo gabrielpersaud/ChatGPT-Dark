@@ -12,7 +12,7 @@
 
 /* Begin PBXFileReference section */
 		52F95B0E2F7A27AD00CAFF07 /* ChatGPT Dark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ChatGPT Dark.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		52F95B1C2F7A3E2300CAFF07 /* final.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = final.icns; sourceTree = "<group>"; };
+		52F95B1C2F7A3E2300CAFF07 /* final.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = ../final.icns; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */

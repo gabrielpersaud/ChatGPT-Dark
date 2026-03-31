@@ -3,13 +3,15 @@
 
 ChatGPT Dark is a small macOS helper that forces the official ChatGPT macOS app to use Dark Aqua at runtime.
 
+Download the latest DMG from [Releases](https://github.com/gabrielpersaud/ChatGPT-Dark/releases).
+
 
 ## Quick Start
 
 1. Open the DMG.
 2. Drag `ChatGPT Dark.app` into the `Applications` folder.
 3. Launch `ChatGPT Dark` from `/Applications`.
-4. It will register itself as a login item and quietly watch for all ChatGPT launches. ( See note below )
+4. It will add itself as a login item once so it can watch for ChatGPT launches. ( See note below )
 5. If System Integrity Protection (SIP) is enabled, follow the on-screen instructions to disable it in Recovery Mode.
 6. Open ChatGPT normally. Developer Access Tools will prompt you for your password, then the helper should apply dark mode.
 
